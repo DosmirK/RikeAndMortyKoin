@@ -1,24 +1,24 @@
 package com.example.rikeandmortykoin.ui.characters
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rikeandmortykoin.utils.Resource
 import com.example.rikeandmortykoin.databinding.FragmentCharactersListBinding
 import com.example.rikeandmortykoin.ui.characters.adapter.CharacterAdapter
-import com.example.rikeandmortykoin.ui.characters.adapter.CharacterViewModel
+import com.example.rikeandmortykoin.ui.characters.adapter.CharactersViewModel
+import com.example.rikeandmortykoin.utils.Resource
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class CharactersListFragment : Fragment() {
 
-    private val viewModel: CharacterViewModel by viewModel()
+    private val viewModel: CharactersViewModel by viewModel()
 
     lateinit var charactersAdapter: CharacterAdapter
 

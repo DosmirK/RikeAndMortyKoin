@@ -2,8 +2,9 @@ package com.example.rikeandmortykoin.di
 
 import com.example.rikeandmortykoin.data.CartoonApiService
 import com.example.rikeandmortykoin.data.NetworkService
-import com.example.rikeandmortykoin.repository.Repository
-import com.example.rikeandmortykoin.ui.characters.adapter.CharacterViewModel
+import com.example.rikeandmortykoin.repository.CharacterRepository
+import com.example.rikeandmortykoin.repository.CharactersRepository
+import com.example.rikeandmortykoin.ui.characters.adapter.CharactersViewModel
 import com.example.rikeandmortykoin.ui.characters.adapter.DetailsViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,11 +20,12 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    single { Repository(get()) }
+    single { CharactersRepository(get()) }
+    single { CharacterRepository(get()) }
 }
 
 val viewModelModule = module {
-    viewModel<CharacterViewModel> { CharacterViewModel(get()) }
+    viewModel<CharactersViewModel> { CharactersViewModel(get()) }
     viewModel<DetailsViewModel> { DetailsViewModel(get()) }
 }
 

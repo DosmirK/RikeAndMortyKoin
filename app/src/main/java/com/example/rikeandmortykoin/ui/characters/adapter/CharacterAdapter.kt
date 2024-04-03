@@ -1,14 +1,14 @@
 package com.example.rikeandmortykoin.ui.characters.adapter
 
 import android.view.LayoutInflater
-import com.example.rikeandmortykoin.data.Character
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rikeandmortykoin.utils.loadImage
 import com.example.rikeandmortykoin.R
+import com.example.rikeandmortykoin.data.Character
 import com.example.rikeandmortykoin.databinding.ItemCharacterBinding
+import com.example.rikeandmortykoin.utils.loadImage
 
 class CharacterAdapter (
     var onClick:(position: String) -> Unit
