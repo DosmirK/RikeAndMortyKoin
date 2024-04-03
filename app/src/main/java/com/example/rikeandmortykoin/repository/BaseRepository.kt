@@ -8,24 +8,6 @@ import kotlinx.coroutines.Dispatchers
 import retrofit2.Response
 
 object BaseRepository {
-
-    /*fun getRequestApi(suspendFunction: suspend () -> Unit) : LiveData<Resource<Character>> {
-        // Запускаем переданную suspend функцию в корутине
-        return liveData(Dispatchers.IO) {
-            emit(Resource.Loading())
-            try {
-                val response = suspendFunction
-                if (response.isSuccessful && response.code() in 200..300 && response.body() != null) {
-                    response.body()?.let {
-                        emit(Resource.Success(it))
-                    }
-                }
-            }catch (e: Exception){
-                emit(Resource.Error(e.localizedMessage?: "Unknown error!"))
-            }
-        }
-    }*/
-
     fun <T> performNetworkRequest(apiCall: suspend () -> Response<T>): LiveData<Resource<T>> {
         return liveData(Dispatchers.IO) {
             emit(Resource.Loading())
