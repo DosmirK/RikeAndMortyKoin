@@ -4,8 +4,8 @@ import com.example.rikeandmortykoin.data.CartoonApiService
 import com.example.rikeandmortykoin.data.NetworkService
 import com.example.rikeandmortykoin.repository.CharacterRepository
 import com.example.rikeandmortykoin.repository.CharactersRepository
-import com.example.rikeandmortykoin.ui.characters.adapter.CharactersViewModel
-import com.example.rikeandmortykoin.ui.characters.adapter.DetailsViewModel
+import com.example.rikeandmortykoin.ui.characters.CharactersViewModel
+import com.example.rikeandmortykoin.ui.character.DetailsViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel

@@ -1,4 +1,4 @@
-package com.example.rikeandmortykoin.ui.characters.adapter
+package com.example.rikeandmortykoin.ui.characters
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +10,6 @@ class CharactersViewModel (
     private val repository: CharactersRepository
 ): ViewModel() {
 
-    fun giveCharacters(): LiveData<Resource<List<Character>>> = repository.getCharacter()
+    suspend fun giveCharacters(): LiveData<Resource<List<Character>>> = repository.getCharacter()
 
 }
