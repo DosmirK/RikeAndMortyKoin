@@ -1,6 +1,15 @@
 package com.example.rikeandmortykoin.data
+import com.google.gson.annotations.SerializedName
 import java.util.*
 
+class Characters(
+
+    @SerializedName("info")
+    val requestInfo: Info,
+
+    @SerializedName("results")
+    val characters: List<Character>
+)
 data class Character(
     val id: Int,
     val name: String,

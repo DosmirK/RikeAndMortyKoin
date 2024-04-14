@@ -3,9 +3,10 @@ package com.example.rikeandmortykoin.di
 import com.example.rikeandmortykoin.data.CartoonApiService
 import com.example.rikeandmortykoin.data.NetworkService
 import com.example.rikeandmortykoin.repository.CharacterRepository
+import com.example.rikeandmortykoin.repository.CharactersPagingSource
 import com.example.rikeandmortykoin.repository.CharactersRepository
-import com.example.rikeandmortykoin.ui.characters.CharactersViewModel
 import com.example.rikeandmortykoin.ui.character.DetailsViewModel
+import com.example.rikeandmortykoin.ui.characters.CharactersViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -22,6 +23,7 @@ val networkModule = module {
 val repositoryModule = module {
     single { CharactersRepository(get()) }
     single { CharacterRepository(get()) }
+    single { CharactersPagingSource(get()) }
 }
 
 val viewModelModule = module {

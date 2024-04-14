@@ -1,13 +1,14 @@
 package com.example.rikeandmortykoin.ui.characters
 
 import androidx.core.view.isVisible
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rikeandmortykoin.databinding.FragmentCharactersListBinding
 import com.example.rikeandmortykoin.ui.base.BaseFragment
-import com.example.rikeandmortykoin.ui.characters.adapter.CharacterAdapter
-import com.example.rikeandmortykoin.utils.Resource
+import com.example.rikeandmortykoin.ui.characters.adapter.CharactersPagingAdapter
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -16,7 +17,7 @@ class CharactersListFragment: BaseFragment<
         FragmentCharactersListBinding, CharactersViewModel>(FragmentCharactersListBinding::inflate) {
 
     override val viewModel: CharactersViewModel by viewModel()
-    private val charactersAdapter = CharacterAdapter(this::onClicker)
+    private val charactersAdapter = CharactersPagingAdapter(this::onClicker)
 
     override fun setupViews() {
         super.setupViews()
@@ -31,15 +32,14 @@ class CharactersListFragment: BaseFragment<
     }
     override fun observe() {
         super.observe()
-        viewModel.viewModelScope.launch {
-            viewModel.giveCharacters().stataHandler(
-                success = {
-                    charactersAdapter.submitList(it)
-                },
-                state = {
-                    binding.animLoading.isVisible = it is Resource.Loading
-                }
-            )
+        viewModel.characterList.observe(viewLifecycleOwner) {
+            charactersAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
+        lifecycleScope.launch {
+            charactersAdapter.loadStateFlow.collectLatest {
+                binding.animLoading.isVisible =
+                    (it.refresh is LoadState.Loading) || (it.append is LoadState.Loading)
+            }
         }
     }
     private fun onClicker(character: Int){

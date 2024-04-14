@@ -2,14 +2,18 @@ package com.example.rikeandmortykoin.ui.characters
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.rikeandmortykoin.data.Character
 import com.example.rikeandmortykoin.repository.CharactersRepository
-import com.example.rikeandmortykoin.utils.Resource
 
 class CharactersViewModel (
     private val repository: CharactersRepository
 ): ViewModel() {
 
-    suspend fun giveCharacters(): LiveData<Resource<List<Character>>> = repository.getCharacter()
+    val characterList: LiveData<PagingData<Character>> =
+        repository.getCharacters()
+            .cachedIn(viewModelScope)
 
 }

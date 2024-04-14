@@ -23,6 +23,16 @@ android {
             "BASE_URL",
             "\"https://rickandmortyapi.com/api/\""
         )
+        buildConfigField(
+            "String",
+            "PAGE",
+            "\"page\""
+        )
+        buildConfigField(
+            "String",
+            "CHARACTER",
+            "\"character\""
+        )
     }
 
     buildTypes {
@@ -80,6 +90,9 @@ dependencies {
     implementation ("com.google.android.material:material:1.11.0")
 
     // coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+
+    //paging3
+    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
 }

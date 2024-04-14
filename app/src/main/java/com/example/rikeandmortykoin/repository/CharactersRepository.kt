@@ -1,16 +1,17 @@
 package com.example.rikeandmortykoin.repository
 
 import androidx.lifecycle.LiveData
-import com.example.rikeandmortykoin.data.CartoonApiService
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.example.rikeandmortykoin.data.Character
-import com.example.rikeandmortykoin.ui.base.BaseRepository
-import com.example.rikeandmortykoin.utils.Resource
 
-class CharactersRepository (
-    private val api: CartoonApiService
-): BaseRepository() {
-
-    suspend fun getCharacter(): LiveData<Resource<List<Character>>> = performNetworkRequest {
-        api.getCharacters().body()?.results ?: emptyList()
-    }
+class CharactersRepository(
+    private val charactersPagingSource: CharactersPagingSource
+) {
+    fun getCharacters(): LiveData<PagingData<Character>> = Pager(
+        config = PagingConfig(pageSize = 10, maxSize = 200),
+        pagingSourceFactory = { charactersPagingSource }
+    ).liveData
 }
